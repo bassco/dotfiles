@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# this file's contents were created by running
+# code --list-extensions | xargs -L 1 echo code --install-extension
+
+
+code --install-extension asciidoctor.asciidoctor-vscode
+code --install-extension casualjim.gotemplate
+code --install-extension ciarant.vscode-structurizr
+code --install-extension DavidAnson.vscode-markdownlint
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension eamodio.gitlens
+code --install-extension EditorConfig.EditorConfig
+code --install-extension Equinusocio.vsc-community-material-theme
+code --install-extension Equinusocio.vsc-material-theme
+code --install-extension equinusocio.vsc-material-theme-icons
+code --install-extension esbenp.prettier-vscode
+code --install-extension github.vscode-github-actions
+code --install-extension GitLab.gitlab-workflow
+code --install-extension golang.go
+code --install-extension hashicorp.terraform
+code --install-extension HTMLHint.vscode-htmlhint
+code --install-extension Intility.vscode-backstage
+code --install-extension jebbs.plantuml
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+code --install-extension ms-python.isort
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
+code --install-extension ms-toolsai.jupyter
+code --install-extension ms-toolsai.jupyter-keymap
+code --install-extension ms-toolsai.jupyter-renderers
+code --install-extension ms-toolsai.vscode-jupyter-cell-tags
+code --install-extension ms-toolsai.vscode-jupyter-slideshow
+code --install-extension ms-vscode-remote.remote-containers
+code --install-extension ms-vscode.cpptools
+code --install-extension ms-vscode.makefile-tools
+code --install-extension ms-vsliveshare.vsliveshare
+code --install-extension octref.vetur
+code --install-extension platformio.platformio-ide
+code --install-extension redhat.java
+code --install-extension redhat.vscode-commons
+code --install-extension redhat.vscode-yaml
+code --install-extension richie5um2.vscode-sort-json
+code --install-extension rust-lang.rust-analyzer
+code --install-extension sdras.night-owl
+code --install-extension SonarSource.sonarlint-vscode
+code --install-extension tamasfe.even-better-toml
+code --install-extension timonwong.shellcheck
+code --install-extension vadimcn.vscode-lldb
+code --install-extension VisualStudioExptTeam.intellicode-api-usage-examples
+code --install-extension VisualStudioExptTeam.vscodeintellicode
+code --install-extension VisualStudioExptTeam.vscodeintellicode-completions
+code --install-extension vmware.vscode-boot-dev-pack
+code --install-extension vmware.vscode-spring-boot
+code --install-extension vscjava.vscode-gradle
+code --install-extension vscjava.vscode-java-debug
+code --install-extension vscjava.vscode-java-dependency
+code --install-extension vscjava.vscode-java-pack
+code --install-extension vscjava.vscode-java-test
+code --install-extension vscjava.vscode-maven
+code --install-extension vscjava.vscode-spring-boot-dashboard
+code --install-extension vscjava.vscode-spring-initializr
+code --install-extension vscode-icons-team.vscode-icons
+code --install-extension waderyan.gitblame
+code --install-extension withfig.fig

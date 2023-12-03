@@ -1,0 +1,92 @@
+{
+  "[github-actions-workflow]": {},
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.formatOnType": true,
+    "gitlens.codeLens.symbolScopes": ["!Module"]
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.accessibilitySupport": "off",
+  "editor.formatOnSave": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "files.autoSave": "afterDelay",
+  "go.toolsManagement.autoUpdate": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["renovate.json", "config.js"],
+      "url": "https://docs.renovatebot.com/renovate-schema.json"
+    }
+  ],
+  "materialTheme.accent": "Orange",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "plantuml.urlFormat": "png",
+  "redhat.telemetry.enabled": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "sonarlint.connectedMode.connections.sonarqube": [
+    {
+      "serverUrl": "https://sonarqube.security.olx.org"
+    }
+  ],
+  "sonarlint.disableTelemetry": true,
+  "sonarlint.ls.javaHome": "/Users/andrew.basson/.asdf/installs/java/openjdk-17.0.2",
+  "sonarlint.rules": {
+    "Web:S5256": {
+      "level": "off"
+    },
+    "Web:TableWithoutCaptionCheck": {
+      "level": "off"
+    },
+    "javascript:S1186": {
+      "level": "off"
+    },
+    "python:S125": {
+      "level": "off"
+    },
+    "python:S3776": {
+      "level": "off"
+    },
+    "typescript:S1848": {
+      "level": "off"
+    },
+    "typescript:S2201": {
+      "level": "off"
+    }
+  },
+  "vetur.useWorkspaceDependencies": true,
+  "vs-kubernetes": {
+    "vs-kubernetes.minikube-show-information-expiration": "2023-08-05T07:18:09.490Z"
+  },
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.colorTheme": "Night Owl",
+  "workbench.editor.enablePreview": false,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  }
+}
