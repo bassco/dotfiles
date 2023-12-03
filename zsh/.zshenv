@@ -14,6 +14,7 @@ export PATH="$PATH:$GOPATH/bin"
 
 export GIT_USERNAME=andrew.basson
 export GIT_USER=${GIT_USERNAME}
+export GIT_PAGER='LESS=FRX less -S +c'
 
 export HOMEBREW_AUTO_UPDATE_SECS=604800
 
