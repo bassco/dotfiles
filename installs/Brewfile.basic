@@ -1,0 +1,17 @@
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+brew "asdf"
+brew "fd"
+brew "fzf"
+brew "gh"
+brew "gnupg"
+brew "mas"
+brew "ripgrep"
+brew "stow"
+brew "tmux"
+cask "alacritty"
+cask "clipy"
+cask "font-meslo-lg-nerd-font"
+mas "1Password for Safari", id: 1569813296
+mas "Telegram", id: 747648890
+mas "‎WhatsApp", id: 310633997
