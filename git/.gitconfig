@@ -1,0 +1,8 @@
+[user]
+	email = andrew.basson@gmail.com
+	name = Andrew Basson
+	signingkey = 1F373F5E34F9AD64DA773061EE3C12CD162C7F66
+[commit]
+	gpgsign = true
+[alias]
+	#url = ls-remote --get-url| sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")/tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --show-prefix)
