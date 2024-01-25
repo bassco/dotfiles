@@ -7,16 +7,13 @@ export EDITOR='nvim'
 export GPG_TTY=$(tty)
 
 export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.krew/bin:$PATH"
-export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
-
-# Tell homebrew to not autoupdate every single time I run it (just once a week).
 
 export GIT_USERNAME=andrew.basson
 export GIT_USER=${GIT_USERNAME}
 export GIT_PAGER='LESS=FRX less -S +c'
 export GIT_EDITOR=${EDITOR}
 
+# Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
 
 # silence direnv output
@@ -33,9 +30,12 @@ export GRADLE_USER_HOME="$HOME/.gradle"
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-[ -f /Users/andrew.basson/.asdf/plugins/java/set-java-home.zsh ] && { . /Users/andrew.basson/.asdf/plugins/java/set-java-home.zsh; }
+# setup java env vars
+[ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && { . "$HOME/.asdf/plugins/java/set-java-home.zsh"; }
 
-. ~/.aliases
+# setup golang env vars
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+[ -f "$HOME/.asdf/plugins/golang/set-env.zsh" ] && { . "$HOME/.asdf/plugins/golang/set-env.zsh"; }
 
 # DO NOT COMMIT SECRETS TO GIT
 [ -f "${HOME}/.secrets" ] && { . "${HOME}/.secrets"; }
