@@ -3,6 +3,7 @@
 # shortcuts and setting defaults
 alias rcv='docker run --rm -ti -v "${PWD}/renovate.json:/usr/src/app/renovate.json" renovate/renovate renovate-config-validator'
 rg() { /opt/homebrew/bin/rg -i --hidden "$@"; }
+vim() { nvim "$@"; }
 
 # git goodness
 gs() { git status "$@"; }
