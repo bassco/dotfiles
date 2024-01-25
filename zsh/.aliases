@@ -2,10 +2,9 @@
 
 # shortcuts and setting defaults
 alias rcv='docker run --rm -ti -v "${PWD}/renovate.json:/usr/src/app/renovate.json" renovate/renovate renovate-config-validator'
-python() { /usr/local/bin/python3 "$@"; }
 rg() { /opt/homebrew/bin/rg -i --hidden "$@"; }
-# git goodness
 
+# git goodness
 gs() { git status "$@"; }
 alias gsu='git status -uno'
 alias gco='git checkout'
@@ -13,9 +12,7 @@ alias gcod='git checkout $(git default)'
 alias gl='git log'
 alias gls='git show'
 alias gp='git pull --rebase'
-alias gpm='git stash save; git checkout master; git pull --rebase'
-
-alias cg='code $(git root)'
+alias gpm='git stash save; git checkout master||git checkout main; git pull --rebase'
 
 # misc
 lsusb() { system_profiler SPUSBDataType "$@"; }
@@ -26,3 +23,6 @@ alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias cp10k="p10k configure"
 alias lg='lazygit'
 fd(){ /opt/homebrew/bin/fd --follow --hidden --exclude .git "$@"; }
+v(){ /opt/homebrew/bin/fd --follow --type f --hidden --exclude .git "$@"|fzf-tmux -p --reverse| xargs nvim }
+
+[ -f ~/.aliases-work ] && { . ~/.aliases-work; }
