@@ -1,7 +1,5 @@
-[user]
-	email = andrew.basson@gmail.com
-	name = Andrew Basson
-	signingkey = 1F373F5E34F9AD64DA773061EE3C12CD162C7F66
+[include]
+  path = ~/.gitconfig-user
 [commit]
 	gpgsign = true
 [alias]
@@ -9,4 +7,19 @@
 [push]
 	autoSetupRemote = true
 [branch]
-	autoSetupMerge = simple
+  autoSetupMerge = simple
+[fetch]
+    prune = true
+[core]
+    editor = nvim
+    excludesfile = ~/.gitignore_global
+    pager = delta
+[delta]
+    line-numbers = true
+    syntax-theme = Dracula
+    plus-style = "syntax #2A363B"
+    plus-emph-style = "syntax #2D4E45"
+    minus-style = "syntax #3B2C37"
+    minus-emph-style = "syntax #613038"
+[init]
+    defaultBranch = main
