@@ -1,13 +1,16 @@
-[include]
-  path = ~/.gitconfig-user
+[includeIf "gitdir:~/dev/gitlab/"]
+    path = ~/.gitconfig-work
+[includeIf "gitdir:~/dev/github/"]
+    path = ~/.gitconfig-personal
 [commit]
-	gpgsign = true
+    gpgsign = true
 [alias]
 	#url = ls-remote --get-url| sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")/tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --show-prefix)
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [branch]
-  autoSetupMerge = simple
+    autoSetupMerge = simple
+    sort = -committerdate
 [fetch]
     prune = true
 [core]
@@ -23,3 +26,5 @@
     minus-emph-style = "syntax #613038"
 [init]
     defaultBranch = main
+[rerere]
+    enabled = true
