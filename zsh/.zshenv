@@ -1,4 +1,5 @@
 # common ENV file used by .bashrc and .zshrc
+export LANG=en_US.UTF-8
 
 [ -f "$HOME/.cargo/env" ] && { . "$HOME/.cargo/env"; }
 
@@ -39,3 +40,7 @@ export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 
 # DO NOT COMMIT SECRETS TO GIT
 [ -f "${HOME}/.secrets" ] && { . "${HOME}/.secrets"; }
+export PATH=/opt/homebrew/opt/socket_vmnet/bin:$PATH
+
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+export TF_IN_AUTOMATION=true
