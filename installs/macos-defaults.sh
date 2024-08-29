@@ -1,4 +1,7 @@
-defaults write com.apple.screencapture location "~/Documents/screenshots"
+#!/usr/bin/env bash
+
+mkdir -p "~/Downloads/screenshots" || true
+defaults write com.apple.screencapture location "~/Downloads/screenshots"
 killall SystemUIServer # set above default immediately
 
 #defaults write com.apple.dock orientation left
