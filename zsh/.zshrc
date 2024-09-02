@@ -79,11 +79,12 @@ setopt appendhistory
 
 # zoxide replaces this?
 #typeset -U path fpath
-#path=(
-#  $HOME/.local/bin
-#  $HOME/.krew/bin
-#  $path
-#)
+
+path=(
+  $HOME/.local/bin
+  $HOME/.krew/bin
+  $path
+)
 
 plugins=(git
   git-open

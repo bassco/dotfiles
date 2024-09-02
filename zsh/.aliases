@@ -7,6 +7,8 @@ rg() { /opt/homebrew/bin/rg -i --hidden "$@"; }
 
 # git goodness
 gs() { git status "$@"; }
+vim() { nvim "$@"; }
+
 alias gsu='git status -uno'
 alias gco='git checkout'
 alias gcod='git checkout $(git default)'
