@@ -1,11 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -16,7 +8,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,43 +61,61 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
 
+export HISTORY_IGNORE="(#i)(cd|cd ..|clear|g ca#m *|l[sal]#( *)#|ldot|exit)"
+HIST_STAMPS="dd/mm/yyyy"
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
+setopt extended_history       # record timestamp of command in HISTFILE
+#setopt interactivecomments rcquotes
+#setopt extendedglob globstarshort
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt inc_append_history     # add commands to HISTFILE in order of execution
+#setopt promptsubst
+setopt share_history          # share command history data
+
 
 # Add wisely, as too many plugins slow down shell startup.
 
 # zoxide replaces this?
-#typeset -U path fpath
-#path=(
-#  $HOME/.local/bin
-#  $HOME/.krew/bin
-#  $path
-#)
-
-plugins=(git
-  git-open
-	asdf
-	zoxide
-	macos
-	direnv
-	zsh-autosuggestions
-	zsh-syntax-highlighting
+typeset -aU path fpath
+path=(
+  $HOME/.krew/bin
+  /opt/homebrew/opt/gnu-tar/libexec/gnubin
+  $path
 )
+
+plugins=(
+  git
+  git-open
+  zoxide
+  mise
+  macos
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  fast-syntax-highlighting
+)
+
 source $ZSH/oh-my-zsh.sh
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
 
-# export MANPATH="/usr/local/man:$MANPATH"
+RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
 
-# You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+## [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# pretty things
+eval "$(/opt/homebrew/bin/starship init zsh)"
+eval "$(atuin init zsh)"
 
 . ~/.aliases

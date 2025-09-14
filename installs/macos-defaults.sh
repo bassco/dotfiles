@@ -15,3 +15,7 @@ defaults write com.apple.HIToolbox AppleDictationAutoEnable -int 0
 # faster keyboard response
 defaults write -g InitialKeyRepeat -int 15
 defaults write -g KeyRepeat -int 2
+
+# https://www.hammerspoon.org/
+# change config path for .dotfiles repo
+defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"

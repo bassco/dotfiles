@@ -21,9 +21,9 @@ lsusb() { system_profiler SPUSBDataType "$@"; }
 ## z-shell goodness
 alias zshconfig="$EDITOR ~/.zshrc"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
-alias cp10k="p10k configure"
 alias lg='lazygit'
 fd(){ /opt/homebrew/bin/fd --follow --hidden --exclude .git "$@"; }
 v(){ /opt/homebrew/bin/fd --follow --type f --hidden --exclude .git "$@"|fzf-tmux -p --reverse| xargs nvim }
 
 [ -f ~/.aliases-work ] && { . ~/.aliases-work; }
+alias archey='archey -l retro'

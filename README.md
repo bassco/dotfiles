@@ -35,4 +35,7 @@ cd dotfiles/installs
 
 # setup the dotfiles...
 stow */
+
+iTerm2 theme for [night-owl][https://terminalcolors.com/themes/night-owl/dark/).
+How to [iinstall](https://terminalcolors.com/tutorials/how-to-change-iterm2-color-scheme/) the iTerm2 theme.
 ```

@@ -1,3 +1,8 @@
+# $PATH is overwritten in login shells, messing with tmux
+typeset -U path
+[ -d "$HOME/.local/bin" ] && path=($HOME/.local/bin $path[@])
+[ -d "$HOME/.cargo/bin" ] && path=($HOME/.cargo/bin $path[@])
+
 export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
