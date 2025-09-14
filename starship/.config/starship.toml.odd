@@ -1,0 +1,76 @@
+"tschema" = 'https://starship.rs/config-schema.json'
+#
+# A continuation prompt that displays two filled-in arrows
+continuation_prompt = '▶▶ '
+add_newline = true
+#format="""$time$all"""
+
+[directory]
+truncation_length = 2
+truncation_symbol = "…/"
+
+[aws]
+format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+
+[cmd_duration]
+symbol = ' '
+format = '\[[$symbol$duration]($style)\]'
+
+[conda]
+format = '\[[$symbol$environment]($style)\]'
+#[git_branch]
+#format = '\[[$symbol$branch]($style)\]'
+#
+#[git_status]
+#format = '([\[$all_status$ahead_behind\]]($style))'
+
+[git_branch]
+symbol = "🌱 "
+truncation_length = 4
+truncation_symbol = ""
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = "🔖 "
+format = "[\\($hash\\)]($style) [\\($tag\\)]($style)"
+style = "green"
+
+[git_status]
+#ahead = "🏎💨"
+#behind = "😰"
+diverged = "😵"
+up_to_date = "🥰"
+untracked = "🤷"
+stashed = "📦"
+modified = "📝"
+renamed = "👅"
+deleted = "🗑️"
+style = "red"
+disabled = false
+
+ahead = "[▴│[${count}](bold white)│](italic green)"
+behind = "[▿│[${count}](bold white)│](italic red)"
+
+[git_metrics]
+format = '([▴$added]($added_style))([▿$deleted]($deleted_style))'
+added_style = 'italic dimmed green'
+deleted_style = 'italic dimmed red'
+ignore_submodules = true
+disabled = true
+
+[kubernetes]
+format = '\[[$symbol$context( \($namespace\))]($style)\]'
+
+[python]
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+
+[time]
+disabled = false
+#symbol = '⏱'
+symbol = ' '
+format = '\[[$symbol[$time]($style)\]'
+time_format = "%R"
+
+[username]
+format = '\[[$user]($style)\]'
+

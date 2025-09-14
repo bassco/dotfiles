@@ -1,6 +1,6 @@
-[includeIf "gitdir:~/dev/gitlab/"]
+[include]
     path = ~/.gitconfig-work
-[includeIf "gitdir:~/dev/github/"]
+[includeIf "gitdir:~/dev/bassco/"]
     path = ~/.gitconfig-personal
 [commit]
     gpgsign = true

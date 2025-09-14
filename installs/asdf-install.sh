@@ -35,4 +35,3 @@ asdf plugin add terraform-docs
 asdf plugin add terragrunt
 asdf plugin add tflint
 asdf plugin add yq
-asdf plugin add zoxide

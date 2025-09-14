@@ -27,12 +27,16 @@ xcode-select --install
 mkdir -p ~/dev/github/bassco
 cd ~/dev/github/bassco
 git clone https://github.com/bassco/dotfiles.git
-cd dotfiles/installs
+pushd dotfiles/installs
 ./brew-install.sh 
 ./asdf-install.sh 
 ./cargo-install.sh 
 ./macos-defaults.sh
-
+popd
+mv ~/dev/github/bassco/dotfiles ~/.dotfiles
+pushd ~/.dotfiles 
 # setup the dotfiles...
 stow */
+popd
+
 ```

@@ -10,8 +10,8 @@ brew "ripgrep"
 brew "stow"
 brew "tmux"
 cask "alacritty"
-cask "clipy"
+cask "zoxide"
 cask "font-meslo-lg-nerd-font"
-mas "1Password for Safari", id: 1569813296
-mas "Telegram", id: 747648890
-mas "‎WhatsApp", id: 310633997
+#mas "1Password for Safari", id: 1569813296
+#mas "Telegram", id: 747648890
+#mas "‎WhatsApp", id: 310633997

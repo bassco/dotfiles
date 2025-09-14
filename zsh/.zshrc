@@ -1,10 +1,21 @@
+# profile zsh startup
+# $ ZSH_PROFILE_STARTUP=1 zsh -i -c exit
+if [ -n "${ZSH_PROFILE_STARTUP:+x}" ]
+then
+  zmodload zsh/zprof
+fi
+
+# Let's pretend that we follow standards
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -12,11 +23,12 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
+# Set name of the theme to load --- if set to "random", it will:wq
+#
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -78,21 +90,22 @@ setopt appendhistory
 # Add wisely, as too many plugins slow down shell startup.
 
 # zoxide replaces this?
-#typeset -U path fpath
-#path=(
-#  $HOME/.local/bin
-#  $HOME/.krew/bin
-#  $path
-#)
+typeset -aU path fpath
+path=(
+  $HOME/.cargo/bin
+  $HOME/.local/bin
+  $HOME/.krew/bin
+  $path
+)
 
-plugins=(git
-  git-open
-	asdf
+plugins=(
+	git
+	git-open
 	zoxide
 	macos
-	direnv
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	fast-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -104,7 +117,15 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 . ~/.aliases
+
+# make the prompt pretty
+eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
+
+if [ -n "${ZSH_PROFILE_STARTUP:+x}" ]
+then
+  zprof
+fi

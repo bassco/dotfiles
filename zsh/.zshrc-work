@@ -1,0 +1,55 @@
+# profile zsh startup
+# $ ZSH_PROFILE_STARTUP=1 zsh -i -c exit
+if [ -n "${ZSH_PROFILE_STARTUP:+x}" ]
+then
+  zmodload zsh/zprof
+fi
+autoload -Uz compinit; compinit
+
+HIST_STAMPS="dd.mm.yyyy"
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_SAVE_NO_DUPS
+#setopt INC_APPEND_HISTORY
+setopt appendhistory
+
+# set unique on path and fpath
+typeset -aU path fpath
+
+path=(
+  "$HOME/.local/bin"
+  $path
+)
+
+# Configure the push directory stack (most people don't need this)
+#setopt AUTO_PUSHD
+#setopt PUSHD_IGNORE_DUPS
+#setopt PUSHD_SILENT
+
+plugins=(git
+	mise
+	zoxide
+	macos
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	fast-syntax-highlighting
+	git-open
+)
+
+source <(fzf --zsh)
+# overide above zsh config
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# yubikey manager completions
+source <(_YKMAN_COMPLETE=zsh_source ykman)
+
+. ~/.aliases
+
+# make the prompt pretty
+eval "$(starship init zsh)"
+
+if [ -n "${ZSH_PROFILE_STARTUP:+x}" ]
+then
+  zprof
+fi
