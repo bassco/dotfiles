@@ -5,10 +5,9 @@ I like the adjustable horizontal scroll option, i.e. prepend the left/right arro
 less reads command line switches from the $LESS variable on startup, here are my preferred switches:
 
 $ echo $LESS
--FXJMQRSi
+-FXMQRSi
 -F or --quit-if-one-screen
 Causes less to automatically exit if the entire file can be displayed on the first screen.
--J add status column on the left, marks columns with search hits.
 -M more verbose status line.
 -Q no bells.
 -R don't convert raw input, lets escape sequences be interpreted.
