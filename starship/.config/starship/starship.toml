@@ -66,9 +66,15 @@ symbol = ' '
 [python]
 style = 'teal'
 symbol = ' '
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-pyenv_version_name = true
+format = '[${symbol}${pyenv_prefix}(${version}) (\(${virtualenv}\) )]($style)'
+#pyenv_version_name = true
 pyenv_prefix = ''
+#format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
+#style = "bold yellow"
+#pyenv_prefix = "venv "
+python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+#detect_extensions = ["py"]
+version_format = "v${raw}"
 
 [lua]
 symbol = ' '
@@ -100,6 +106,7 @@ symbol = '󰏗 '
 symbol = ' '
 style = 'yellow'
 format = '[$symbol($profile )(\[$duration\] )]($style)'
+
 
 [docker_context]
 symbol = ' '

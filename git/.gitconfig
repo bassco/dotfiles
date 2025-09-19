@@ -5,6 +5,7 @@
 [commit]
     gpgsign = true
 [alias]
+	root = rev-parse --show-toplevel
 	#url = ls-remote --get-url| sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")/tree/$(git symbolic-ref --quiet --short HEAD )/$(git rev-parse --show-prefix)
 [push]
     autoSetupRemote = true

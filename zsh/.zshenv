@@ -22,8 +22,8 @@ export HOMEBREW_AUTO_UPDATE_SECS=604800
 #export RUST_WITHOUT=rust-docs
 
 # use fd for fzf input
-#export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
-#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # DO NOT COMMIT SECRETS TO GIT
 [ -f "${HOME}/.secrets" ] && { . "${HOME}/.secrets"; }
