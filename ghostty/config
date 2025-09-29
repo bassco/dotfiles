@@ -7,3 +7,6 @@ window-decoration = true
 macos-option-as-alt = true
 # background-opacity = 0.7
 # background-blur-radius = 20 
+
+# copy selection to cmd+V buffer
+copy-on-select = clipboard
