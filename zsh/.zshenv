@@ -31,11 +31,13 @@ export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # setup java env vars
-[ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && { . "$HOME/.asdf/plugins/java/set-java-home.zsh"; }
+# [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && { . "$HOME/.asdf/plugins/java/set-java-home.zsh"; }
 
 # setup golang env vars
-export ASDF_GOLANG_MOD_VERSION_ENABLED=true
-[ -f "$HOME/.asdf/plugins/golang/set-env.zsh" ] && { . "$HOME/.asdf/plugins/golang/set-env.zsh"; }
+# export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+# [ -f "$HOME/.asdf/plugins/golang/set-env.zsh" ] && { . "$HOME/.asdf/plugins/golang/set-env.zsh"; }
+
+export KUBECONFIG="$HOME/.kube/microk8s"
 
 # DO NOT COMMIT SECRETS TO GIT
 [ -f "${HOME}/.secrets" ] && { . "${HOME}/.secrets"; }

@@ -6,7 +6,6 @@ return {
     opts = { use_diagnostic_signs = true },
   },
 
-  -- disable trouble
-  { "folke/trouble.nvim", enabled = false },
-
+  -- trouble required for >= 10
+  { "folke/trouble.nvim", enabled = true },
 }

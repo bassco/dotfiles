@@ -19,6 +19,7 @@ asdf plugin add golangci-lint
 asdf plugin add gradle
 asdf plugin add helm
 asdf plugin add helmfile
+asdf plugin add fd
 asdf plugin add java
 asdf plugin add just
 asdf plugin add kubectl
@@ -28,6 +29,7 @@ asdf plugin add nodejs
 asdf plugin add pluto
 asdf plugin add pre-commit
 asdf plugin add python
+asdf plugin add ripgrep
 asdf plugin add rust
 asdf plugin add sops
 asdf plugin add terraform
