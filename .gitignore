@@ -1,4 +1,4 @@
 **/.secrets
 **/*.swp
-.claude/
+/.claude/
 installs/defaults-all
