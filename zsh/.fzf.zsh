@@ -1,7 +1,7 @@
 # Setup fzf
 # ---------
 FZF_DIR="/opt/homebrew/opt/fzf"
-# needed when using homebrew. ignored since we use asdf
+# needed when using homebrew. ignored since we use mise
 #if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
 #  PATH="${PATH:+${PATH}:}$FZF_DIR/bin"
 #fi

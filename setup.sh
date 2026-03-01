@@ -16,7 +16,7 @@ ROLE_FILE="$HOME/.machine-role"
 
 # ── role → stow packages mapping ────────────────────────────────
 declare -A ROLE_PACKAGES=(
-  [base]="zsh bash git nvim tmux starship ripgrep atuin common gpg claude"
+  [base]="zsh bash git nvim tmux starship ripgrep atuin common gpg claude mise"
   [macos]="ghostty"
   [home]="aerospace hammerspoon archey4"
   [work]="vscode terraform"
@@ -34,9 +34,10 @@ declare -A STOW_TARGET=(
 )
 
 # ── overlay files to symlink for each role ──────────────────────
+# format: "source_relative_to_dotfiles:destination_relative_to_home"
 declare -A ROLE_OVERLAYS=(
-  [work]="zshrc-work:zshrc-local zshenv-work:zshenv-local"
-  [home]="zshrc-home:zshrc-local"
+  [work]="zsh/.zshrc-work:.zshrc-local zsh/.zshenv-work:.zshenv-local mise/config.work.toml:.config/mise/config.local.toml"
+  [home]="zsh/.zshrc-home:.zshrc-local"
 )
 
 # ── helpers ──────────────────────────────────────────────────────
@@ -76,8 +77,8 @@ stow_package() {
 }
 
 link_overlay() {
-  local src="$DOTFILES_DIR/zsh/.$1"
-  local dst="$HOME/.$2"
+  local src="$DOTFILES_DIR/$1"
+  local dst="$HOME/$2"
 
   if [[ ! -f "$src" ]]; then
     echo "  warning: overlay source $src not found, skipping"
@@ -88,6 +89,8 @@ link_overlay() {
     echo "  would link $dst → $src"
     return
   fi
+
+  mkdir -p "$(dirname "$dst")"
 
   if [[ -L "$dst" ]]; then
     rm "$dst"

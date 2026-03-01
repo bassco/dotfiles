@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# rust installs cargo from asdf
+# rust installs cargo from mise
 
 cargo install --locked cargo-deny && cargo deny init
 cargo install nu
