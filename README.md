@@ -1,38 +1,114 @@
 # dotfiles
 
-Followed a [gist](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f) to split out the installs and the gnu stow project for the config files.
+Role-based dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
-## import config files workflow
+## Directory layout
 
-You need [stow](https://www.gnu.org/software/stow/) installed. In my case `brew install stow` did the trick.
+```
+.dotfiles/
+├── setup.sh              # role-based stow + install orchestrator
+├── zsh/                  # base shell config (.zshrc, .zshenv, .zprofile)
+│   ├── .zshrc-work       # work overlay (sourced as ~/.zshrc-local)
+│   ├── .zshrc-home       # home overlay (sourced as ~/.zshrc-local)
+│   ├── .zshenv-work      # work env vars (sourced as ~/.zshenv-local)
+│   └── ...
+├── bash/                 # base: bash config
+├── git/                  # base: git config
+├── nvim/                 # base: neovim config
+├── tmux/                 # base: tmux config
+├── starship/             # base: starship prompt
+├── ripgrep/              # base: ripgrep config
+├── atuin/                # base: atuin shell history
+├── common/               # base: .hushlogin, etc.
+├── gpg/                  # base: gnupg config
+├── ghostty/              # macos: ghostty terminal
+├── aerospace/            # home: aerospace window manager
+├── hammerspoon/          # home: hammerspoon automation
+├── archey4/              # home: system info display
+├── vscode/               # work: vscode settings
+├── terraform/            # work: terraform config
+└── installs/
+    ├── brew-install.sh   # role-aware Homebrew bundle installer
+    ├── Brewfile           # base: cross-platform CLI tools
+    ├── Brewfile.macos     # macos: macOS casks and formulae
+    ├── Brewfile.home      # home: personal apps and Mac App Store
+    ├── Brewfile.work      # work: work-specific tools (gitignored)
+    ├── Brewfile.linux     # linux: linux-specific packages
+    ├── choco-install.ps1  # windows: native apps via Chocolatey
+    ├── wsl-setup.sh       # windows: WSL2 bootstrap script
+    ├── macos-defaults.sh  # macos: system defaults
+    └── ...
+```
+
+## Roles
+
+| Role       | Packages                                                           | Machines              |
+| ---------- | ------------------------------------------------------------------ | --------------------- |
+| **base**   | zsh, bash, git, nvim, tmux, starship, ripgrep, atuin, common, gpg  | all                   |
+| **macos**  | ghostty, macOS defaults, Brewfile.macos                            | all macOS             |
+| **home**   | aerospace, hammerspoon, archey4, Brewfile.home                     | home macOS            |
+| **work**   | vscode, terraform, Brewfile.work                                   | work macOS            |
+| **linux**  | Brewfile.linux                                                     | Linux / WSL2          |
+| **windows**| choco-install.ps1 (native apps)                                    | Windows host          |
+
+## Setup
+
+### Home macOS machine
 
 ```console
-# create an empty file to import
-# e.g. ~/.aliases file
+xcode-select --install
+git clone https://github.com/bassco/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./setup.sh base macos home
+```
+
+### Work macOS machine
+
+```console
+xcode-select --install
+git clone https://github.com/bassco/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./setup.sh base macos work
+```
+
+### Linux machine
+
+```console
+git clone https://github.com/bassco/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles/installs
+./wsl-setup.sh       # or manually: install linuxbrew, then ../setup.sh base linux
+```
+
+### Windows (WSL2)
+
+1. Run `installs/choco-install.ps1` in elevated PowerShell for native apps
+2. Open WSL2 Debian/Ubuntu:
+```console
+git clone https://github.com/bassco/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles/installs
+./wsl-setup.sh
+```
+
+### Re-applying after updates
+
+```console
+cd ~/.dotfiles && git pull
+./setup.sh            # re-applies saved roles from ~/.machine-role
+```
+
+## Importing a config file
+
+```console
 mkdir zsh
 touch zsh/.aliases
 stow --adopt zsh
 ```
 
-This will symlink my `~/.aliases` file into the repo under the **_zsh_** folder.
+This symlinks `~/.aliases` into the repo under the `zsh/` folder.
 
-You can _adopt_ multiple files or directories in on go. Or, can move content into the repo and then `stow` to update or create the symlinks.
+## Manual settings
 
-## setting up a new machine
+### Remap Caps Lock to Escape
 
-In the terminal issue the following commands:
-
-```console
-xcode-select --install
-mkdir -p ~/dev/github/bassco
-cd ~/dev/github/bassco
-git clone https://github.com/bassco/dotfiles.git
-cd dotfiles/installs
-./brew-install.sh 
-./asdf-install.sh 
-./cargo-install.sh 
-./macos-defaults.sh
-
-# setup the dotfiles...
-stow */
-```
+1. System Settings > Accessibility > Keyboard > enable **Keyboard Navigation**
+2. System Settings > Keyboard > Keyboard Shortcuts > Modifier Keys > set **Caps Lock** to **Escape**
