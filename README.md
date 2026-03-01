@@ -25,6 +25,7 @@ Role-based dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 ├── aerospace/            # home: aerospace window manager
 ├── hammerspoon/          # home: hammerspoon automation
 ├── archey4/              # home: system info display
+├── cspell/               # base: cspell spell checking config
 ├── vscode/               # work: vscode settings
 ├── terraform/            # work: terraform config
 └── installs/
@@ -45,7 +46,7 @@ Role-based dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 | Role       | Packages                                                           | Machines              |
 | ---------- | ------------------------------------------------------------------ | --------------------- |
-| **base**   | zsh, bash, git, nvim, tmux, starship, ripgrep, atuin, common, gpg  | all                   |
+| **base**   | zsh, bash, git, nvim, tmux, starship, ripgrep, atuin, common, gpg, cspell | all                   |
 | **macos**  | ghostty, macOS defaults, Brewfile.macos                            | all macOS             |
 | **home**   | aerospace, hammerspoon, archey4, Brewfile.home                     | home macOS            |
 | **work**   | vscode, terraform, Brewfile.work                                   | work macOS            |
@@ -114,6 +115,27 @@ cd ~/.dotfiles/installs
 ```
 
 The script runs `brew bundle dump`, subtracts packages already in the shared Brewfiles (base + macos), and writes only role-specific entries to the target Brewfile.
+
+## Spell checking (cspell)
+
+cspell provides spell checking in neovim via nvim-lint with role-based word lists.
+
+### Word lists
+
+| File | Scope | Machines |
+| ---- | ----- | -------- |
+| `~/.config/cspell/base-words.txt` | shared vocabulary | all |
+| `~/.config/cspell/work-words.txt` | work jargon | work (overlay) |
+| `~/.config/cspell/home-words.txt` | personal terms | home (overlay) |
+
+### Adding words in neovim
+
+- Place cursor on an unknown word and press `<leader>cw`
+- Choose **global** (appends to `base-words.txt`) or **project** (creates/updates `cspell.json` in cwd)
+
+### Per-project dictionaries
+
+Any project can have its own `cspell.json` at the root. cspell merges project words with the global config automatically.
 
 ## Importing a config file
 
