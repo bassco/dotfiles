@@ -116,6 +116,11 @@ run_installs() {
         echo "  running brew-install.sh (base)..."
         bash "$DOTFILES_DIR/installs/brew-install.sh" base
       fi
+      echo "  installing mise tools..."
+      mise install 2>/dev/null || echo "  warning: mise not found, skipping tool installs"
+      echo "  installing neovim providers..."
+      uv pip install --system neovim 2>/dev/null || echo "  warning: uv not found, skipping python neovim provider"
+      npm install -g neovim 2>/dev/null || echo "  warning: npm not found, skipping node neovim provider"
       ;;
     macos)
       if [[ -f "$DOTFILES_DIR/installs/brew-install.sh" ]]; then
