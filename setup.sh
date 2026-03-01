@@ -29,7 +29,6 @@ declare -A STOW_TARGET=(
   [archey4]="$HOME/.config/archey4"
   [atuin]="$HOME/.config/atuin"
   [ghostty]="$HOME/.config/ghostty"
-  [cspell]="$HOME/.config/cspell"
 )
 
 # ── overlay files to symlink for each role ──────────────────────
