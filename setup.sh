@@ -16,9 +16,9 @@ ROLE_FILE="$HOME/.machine-role"
 
 # ── role → stow packages mapping ────────────────────────────────
 declare -A ROLE_PACKAGES=(
-  [base]="zsh bash git nvim tmux starship ripgrep atuin common gpg claude mise zed lazygit"
+  [base]="zsh bash git nvim tmux starship ripgrep atuin common gpg claude mise lazygit"
   [macos]="ghostty"
-  [home]="aerospace hammerspoon archey4"
+  [home]="aerospace hammerspoon archey4 zed"
   [work]="vscode terraform"
   [linux]=""
   [windows]=""
