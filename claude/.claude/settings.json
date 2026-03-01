@@ -1,0 +1,12 @@
+{
+  "model": "opus",
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "activeOutputStyle": "Claude MPM",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
+}
