@@ -1,18 +1,11 @@
 # home machine packages — personal macOS machines
-tap "homebrew/cask-fonts"
-
 # casks
-cask "aerospace"
-cask "bitwarden"
-cask "firefox"
+cask "1password"
 cask "font-fira-mono-for-powerline"
 cask "font-meslo-lg"
-cask "podman"
 
 # Mac App Store
 mas "1Password for Safari", id: 1569813296
 mas "Telegram", id: 747648890
 mas "WhatsApp", id: 310633997
-mas "Alfred", id: 405843582
-mas "Slack", id: 803453959
 mas "Xcode", id: 497799835

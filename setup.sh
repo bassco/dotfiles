@@ -26,11 +26,9 @@ declare -A ROLE_PACKAGES=(
 
 # ── packages that need a custom stow target ─────────────────────
 declare -A STOW_TARGET=(
-  [aerospace]="$HOME/.config/aerospace"
   [archey4]="$HOME/.config/archey4"
   [atuin]="$HOME/.config/atuin"
   [ghostty]="$HOME/.config/ghostty"
-  [hammerspoon]="$HOME/.hammerspoon"
   [cspell]="$HOME/.config/cspell"
 )
 
@@ -183,6 +181,14 @@ for role in "${ROLES[@]}"; do
   fi
 done
 
+# auto-prepend base (always) and macos (on darwin) if not already present
+if [[ ! " ${ROLES[*]} " == *" base "* ]]; then
+  ROLES=("base" "${ROLES[@]}")
+fi
+if [[ "$OSTYPE" == darwin* && ! " ${ROLES[*]} " == *" macos "* ]]; then
+  ROLES=("${ROLES[1]}" "macos" "${ROLES[@]:1}")
+fi
+
 # save roles for future re-runs
 if [[ "$DRY_RUN" == "0" ]]; then
   echo "${ROLES[*]}" > "$ROLE_FILE"
@@ -211,13 +217,13 @@ for role in "${ROLES[@]}"; do
   echo "── role: $role ──"
 
   # stow packages
-  for pkg in ${ROLE_PACKAGES[$role]}; do
+  for pkg in ${=ROLE_PACKAGES[$role]}; do
     stow_package "$pkg"
   done
 
   # link overlays
   if [[ -v ROLE_OVERLAYS[$role] ]]; then
-    for mapping in ${ROLE_OVERLAYS[$role]}; do
+    for mapping in ${=ROLE_OVERLAYS[$role]}; do
       IFS=: read src dst <<< "$mapping"
       link_overlay "$src" "$dst"
     done

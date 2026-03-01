@@ -1,0 +1,8 @@
+# work machine packages — work macOS machines
+
+# casks
+cask "bitwarden"
+cask "firefox"
+
+# Mac App Store
+mas "Slack", id: 803453959

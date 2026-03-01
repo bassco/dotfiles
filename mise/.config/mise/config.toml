@@ -1,11 +1,12 @@
 [settings]
-idiomatic_version_file_enable_tools = ["node", "python"]
+idiomatic_version_file_enable_tools = ["python", "ruby"]
 experimental = true
 
 [tools]
-fzf = "0.52.1"
-nodejs = "20.8.1"
-pipx = "latest"
-python = "3.11.7"
-rust = "1.74.0"
-zoxide = "0.9.4"
+age = "latest"
+claude = "latest"
+docker-compose = "latest"
+node = "lts"
+sops = "latest"
+docker-cli = "latest"
+go = "1.25.1"

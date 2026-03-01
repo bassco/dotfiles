@@ -15,7 +15,7 @@ Role-based dotfiles managed with GNU Stow. Each top-level directory is a stow pa
 
 - **base** — zsh, bash, git, nvim, tmux, starship, ripgrep, atuin, common, gpg, claude, mise, lazygit
 - **macos** — ghostty + macOS defaults
-- **home** — aerospace, hammerspoon, archey4, zed
+- **home** — archey4, zed
 - **work** — vscode, terraform
 
 ## Key conventions
