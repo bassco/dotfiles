@@ -36,7 +36,7 @@ declare -A STOW_TARGET=(
 # ── overlay files to symlink for each role ──────────────────────
 # format: "source_relative_to_dotfiles:destination_relative_to_home"
 declare -A ROLE_OVERLAYS=(
-  [work]="zsh/.zshrc-work:.zshrc-local zsh/.zshenv-work:.zshenv-local mise/config.work.toml:.config/mise/config.local.toml"
+  [work]="zsh/.zshrc-work:.zshrc-local zsh/.zshenv-work:.zshenv-local overlays/mise-config.work.toml:.config/mise/config.local.toml"
   [home]="zsh/.zshrc-home:.zshrc-local"
 )
 
