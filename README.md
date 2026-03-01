@@ -29,6 +29,7 @@ Role-based dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 ├── terraform/            # work: terraform config
 └── installs/
     ├── brew-install.sh   # role-aware Homebrew bundle installer
+    ├── brew-dump.sh      # dump current brew state into a role Brewfile
     ├── Brewfile           # base: cross-platform CLI tools
     ├── Brewfile.macos     # macos: macOS casks and formulae
     ├── Brewfile.home      # home: personal apps and Mac App Store
@@ -95,6 +96,24 @@ cd ~/.dotfiles/installs
 cd ~/.dotfiles && git pull
 ./setup.sh            # re-applies saved roles from ~/.machine-role
 ```
+
+## Syncing Brewfiles from an existing machine
+
+To capture what's currently installed via Homebrew and update the role-specific Brewfile:
+
+```console
+cd ~/.dotfiles/installs
+
+# preview what would be written
+./brew-dump.sh --dry-run work
+
+# update the Brewfile for your role
+./brew-dump.sh work    # on your work machine
+./brew-dump.sh linux   # on your linux machine
+./brew-dump.sh home    # on your home machine
+```
+
+The script runs `brew bundle dump`, subtracts packages already in the shared Brewfiles (base + macos), and writes only role-specific entries to the target Brewfile.
 
 ## Importing a config file
 
