@@ -1,0 +1,13 @@
+# macOS-specific packages — all macOS machines (home + work)
+tap "homebrew/cask-fonts"
+
+# macOS CLI tools
+brew "blueutil"
+brew "gnupg", link: false
+brew "mas"
+brew "openssh"
+
+# casks
+cask "font-meslo-lg-nerd-font"
+cask "ghostty"
+cask "mise"

@@ -1,0 +1,3 @@
+# Linux-specific packages (Linuxbrew)
+# Most CLI tools come from the base Brewfile.
+# Add linux-only formulae here as needed.
