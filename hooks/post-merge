@@ -1,0 +1,62 @@
+#!/bin/zsh
+# post-merge hook: install new brew packages for the machine's active roles
+# after a git pull/merge that changed any Brewfile.
+
+set -euo pipefail
+
+DOTFILES_DIR="${0:A:h}/../.."
+ROLE_FILE="$HOME/.machine-role"
+
+# role → Brewfile mapping (mirrors brew-install.sh)
+typeset -A ROLE_BREWFILE=(
+  base    Brewfile
+  macos   Brewfile.macos
+  home    Brewfile.home
+  work    Brewfile.work
+  linux   Brewfile.linux
+)
+
+# bail if brew isn't installed
+if ! command -v brew &>/dev/null; then
+  exit 0
+fi
+
+# bail if no saved roles
+if [[ ! -f "$ROLE_FILE" ]]; then
+  exit 0
+fi
+
+ROLES=( ${(f)"$(< $ROLE_FILE)"} )
+
+# find Brewfiles changed in this merge
+changed_files=$(git diff HEAD@{1} --name-only -- 'installs/Brewfile*' 2>/dev/null || true)
+
+if [[ -z "$changed_files" ]]; then
+  exit 0
+fi
+
+# build set of Brewfiles relevant to this machine's roles
+typeset -A active_brewfiles
+for role in $ROLES; do
+  if (( ${+ROLE_BREWFILE[$role]} )); then
+    active_brewfiles[${ROLE_BREWFILE[$role]}]=1
+  fi
+done
+
+# install from each changed Brewfile that matches an active role
+installed=0
+for file in ${(f)changed_files}; do
+  local basename=${file:t}
+  if (( ${+active_brewfiles[$basename]} )); then
+    local filepath="$DOTFILES_DIR/installs/$basename"
+    if [[ -f "$filepath" ]]; then
+      echo "post-merge: installing new packages from $basename..."
+      brew bundle install --file="$filepath" --no-upgrade
+      installed=1
+    fi
+  fi
+done
+
+if [[ "$installed" -eq 1 ]]; then
+  echo "post-merge: brew sync complete."
+fi

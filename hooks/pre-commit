@@ -1,0 +1,67 @@
+#!/bin/zsh
+# pre-commit hook: detect packages that appear in multiple Brewfiles.
+# If a package exists in 2+ non-work Brewfiles, it likely belongs in base.
+
+set -euo pipefail
+
+DOTFILES_DIR="${0:A:h}/../.."
+
+# only run if Brewfiles are staged
+staged=$(git diff --cached --name-only -- 'installs/Brewfile*' 2>/dev/null || true)
+if [[ -z "$staged" ]]; then
+  exit 0
+fi
+
+# Brewfiles to compare (all committed, non-work)
+BREWFILES=(
+  installs/Brewfile
+  installs/Brewfile.macos
+  installs/Brewfile.home
+  installs/Brewfile.linux
+)
+
+# extract package names from a Brewfile (brew and cask lines)
+extract_packages() {
+  local file="$1"
+  if [[ -f "$file" ]]; then
+    grep -E '^\s*(brew|cask)\s+"' "$file" \
+      | sed -E 's/^\s*(brew|cask)\s+"([^"]+)".*/\1:\2/' \
+      || true
+  fi
+}
+
+# collect packages per file: pkg_key -> space-separated list of Brewfile names
+typeset -A pkg_files
+
+for brewfile in $BREWFILES; do
+  local filepath="$DOTFILES_DIR/$brewfile"
+  local label=${brewfile:t}
+  for pkg in ${(f)"$(extract_packages "$filepath")"}; do
+    [[ -z "$pkg" ]] && continue
+    if (( ${+pkg_files[$pkg]} )); then
+      pkg_files[$pkg]+=" $label"
+    else
+      pkg_files[$pkg]="$label"
+    fi
+  done
+done
+
+# find duplicates
+duplicates=""
+for pkg files in ${(kv)pkg_files}; do
+  local -a words=( ${(s: :)files} )
+  if [[ "${#words}" -gt 1 ]]; then
+    local type="${pkg%%:*}"
+    local name="${pkg#*:}"
+    duplicates+="  $type \"$name\" found in: $files\n"
+  fi
+done
+
+if [[ -n "$duplicates" ]]; then
+  echo "pre-commit: duplicate packages detected across Brewfiles!"
+  echo ""
+  echo -e "$duplicates"
+  echo "Consider moving shared packages to installs/Brewfile (base)."
+  echo "To bypass this check: git commit --no-verify"
+  exit 1
+fi

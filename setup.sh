@@ -188,6 +188,22 @@ if [[ "$DRY_RUN" == "0" ]]; then
   echo "Saved roles to $ROLE_FILE: ${ROLES[*]}"
 fi
 
+# install git hooks
+if [[ -d "$DOTFILES_DIR/.git" && -d "$DOTFILES_DIR/hooks" ]]; then
+  echo ""
+  echo "── git hooks ──"
+  for hook in "$DOTFILES_DIR/hooks/"*; do
+    hookname=$(basename "$hook")
+    target="$DOTFILES_DIR/.git/hooks/$hookname"
+    if [[ "$DRY_RUN" == "1" ]]; then
+      echo "  would link $target → $hook"
+    else
+      ln -sf "$hook" "$target"
+      echo "  link $hookname"
+    fi
+  done
+fi
+
 # stow packages and run installs for each role
 for role in "${ROLES[@]}"; do
   echo ""
