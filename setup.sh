@@ -115,6 +115,10 @@ run_installs() {
         echo "  running brew-install.sh (base)..."
         bash "$DOTFILES_DIR/installs/brew-install.sh" base
       fi
+      echo "  ensuring cspell dictionary files exist..."
+      for dict in base-words.txt work-words.txt home-words.txt; do
+        touch "$HOME/.config/cspell/$dict"
+      done
       echo "  installing mise tools..."
       mise install 2>/dev/null || echo "  warning: mise not found, skipping tool installs"
       echo "  installing neovim providers..."

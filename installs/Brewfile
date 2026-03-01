@@ -42,6 +42,7 @@ brew "uv"
 
 # languages and runtimes
 brew "go"
+brew "mise"
 brew "node"
 brew "python@3.12"
 brew "rustup-init"

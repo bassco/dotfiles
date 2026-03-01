@@ -42,13 +42,24 @@ return {
   {
     "mfussenegger/nvim-lint",
     opts = function(_, opts)
-      opts.linters = opts.linters or {}
-      opts.linters.cspell = {
-        args = { "lint", "--config", cspell_config, "--no-progress", "--no-summary", "stdin://%:p" },
-      }
       opts.linters_by_ft = opts.linters_by_ft or {}
       opts.linters_by_ft["*"] = opts.linters_by_ft["*"] or {}
       table.insert(opts.linters_by_ft["*"], "cspell")
+
+      opts.linters = opts.linters or {}
+      opts.linters.cspell = {
+        args = {
+          "lint",
+          "--no-color",
+          "--no-progress",
+          "--no-summary",
+          "--config",
+          cspell_config,
+          function()
+            return "stdin://" .. vim.api.nvim_buf_get_name(0)
+          end,
+        },
+      }
     end,
   },
   {
