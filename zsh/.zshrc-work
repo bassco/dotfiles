@@ -1,0 +1,10 @@
+# work-specific zsh config overlay
+# symlink or copy to ~/.zshrc-local
+
+# yubikey manager completions
+source <(_YKMAN_COMPLETE=zsh_source ykman)
+
+# work-specific fzf setup
+source <(fzf --zsh)
+# override with custom fzf config if present
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,0 +1,8 @@
+# work-specific environment variables
+# symlink or copy to ~/.zshenv-local
+
+export GIT_USERNAME=Andrew.Basson-Makersite
+export GIT_USER=${GIT_USERNAME}
+
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+export TF_IN_AUTOMATION=true
