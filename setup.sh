@@ -18,7 +18,7 @@ ROLE_FILE="$HOME/.machine-role"
 declare -A ROLE_PACKAGES=(
   [base]="zsh bash git nvim tmux starship ripgrep atuin common gpg claude mise lazygit cspell"
   [macos]="ghostty"
-  [home]="aerospace hammerspoon archey4 zed"
+  [home]="archey4 zed"
   [work]="vscode terraform"
   [linux]=""
   [windows]=""
@@ -167,7 +167,7 @@ done
 # no roles given — try to read from ~/.machine-role
 if [[ ${#ROLES[@]} -eq 0 ]]; then
   if [[ -f "$ROLE_FILE" ]]; then
-    read -ra ROLES < "$ROLE_FILE"
+    read -A ROLES < "$ROLE_FILE"
     echo "Re-applying saved roles: ${ROLES[*]}"
   else
     echo "No roles specified and $ROLE_FILE not found."
@@ -218,7 +218,7 @@ for role in "${ROLES[@]}"; do
   # link overlays
   if [[ -v ROLE_OVERLAYS[$role] ]]; then
     for mapping in ${ROLE_OVERLAYS[$role]}; do
-      IFS=: read -r src dst <<< "$mapping"
+      IFS=: read src dst <<< "$mapping"
       link_overlay "$src" "$dst"
     done
   fi

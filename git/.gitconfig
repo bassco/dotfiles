@@ -4,6 +4,8 @@
     path = ~/.gitconfig-personal
 [includeIf "gitdir:~/dev/learning/"]
     path = ~/.gitconfig-personal
+[includeIf "gitdir:~/.dotfiles/"]
+    path = ~/.gitconfig-personal
 [commit]
     gpgsign = true
 [alias]

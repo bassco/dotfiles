@@ -44,14 +44,14 @@ Role-based dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Roles
 
-| Role       | Packages                                                           | Machines              |
-| ---------- | ------------------------------------------------------------------ | --------------------- |
-| **base**   | zsh, bash, git, nvim, tmux, starship, ripgrep, atuin, common, gpg, cspell | all                   |
-| **macos**  | ghostty, macOS defaults, Brewfile.macos                            | all macOS             |
-| **home**   | aerospace, hammerspoon, archey4, Brewfile.home                     | home macOS            |
-| **work**   | vscode, terraform, Brewfile.work                                   | work macOS            |
-| **linux**  | Brewfile.linux                                                     | Linux / WSL2          |
-| **windows**| choco-install.ps1 (native apps)                                    | Windows host          |
+| Role        | Packages                                                                  | Machines     |
+| ----------- | ------------------------------------------------------------------------- | ------------ |
+| **base**    | zsh, bash, git, nvim, tmux, starship, ripgrep, atuin, common, gpg, cspell | all          |
+| **macos**   | ghostty, macOS defaults, Brewfile.macos                                   | all macOS    |
+| **home**    | aerospace, hammerspoon, archey4, Brewfile.home                            | home macOS   |
+| **work**    | vscode, terraform, Brewfile.work                                          | work macOS   |
+| **linux**   | Brewfile.linux                                                            | Linux / WSL2 |
+| **windows** | choco-install.ps1 (native apps)                                           | Windows host |
 
 ## Setup
 
@@ -59,6 +59,7 @@ Role-based dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ```console
 xcode-select --install
+sudo xcodebuild -license accept
 git clone https://github.com/bassco/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./setup.sh base macos home
@@ -85,6 +86,7 @@ cd ~/.dotfiles/installs
 
 1. Run `installs/choco-install.ps1` in elevated PowerShell for native apps
 2. Open WSL2 Debian/Ubuntu:
+
 ```console
 git clone https://github.com/bassco/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles/installs
@@ -122,11 +124,11 @@ cspell provides spell checking in neovim via nvim-lint with role-based word list
 
 ### Word lists
 
-| File | Scope | Machines |
-| ---- | ----- | -------- |
-| `~/.config/cspell/base-words.txt` | shared vocabulary | all |
-| `~/.config/cspell/work-words.txt` | work jargon | work (overlay) |
-| `~/.config/cspell/home-words.txt` | personal terms | home (overlay) |
+| File                              | Scope             | Machines       |
+| --------------------------------- | ----------------- | -------------- |
+| `~/.config/cspell/base-words.txt` | shared vocabulary | all            |
+| `~/.config/cspell/work-words.txt` | work jargon       | work (overlay) |
+| `~/.config/cspell/home-words.txt` | personal terms    | home (overlay) |
 
 ### Adding words in neovim
 
