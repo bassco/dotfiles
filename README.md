@@ -110,5 +110,30 @@ This symlinks `~/.aliases` into the repo under the `zsh/` folder.
 
 ### Remap Caps Lock to Escape
 
+#### macOS
+
 1. System Settings > Accessibility > Keyboard > enable **Keyboard Navigation**
 2. System Settings > Keyboard > Keyboard Shortcuts > Modifier Keys > set **Caps Lock** to **Escape**
+
+#### Linux (Ubuntu/Debian)
+
+Install [interception-tools](https://gitlab.com/interception/linux/tools) and [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc):
+
+```console
+sudo apt install interception-tools interception-caps2esc
+```
+
+Create `/etc/interception/udevmon.d/caps2esc.yaml`:
+
+```yaml
+- JOB: intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE
+  DEVICE:
+    EVENTS:
+      EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+```
+
+Enable and start the service:
+
+```console
+sudo systemctl enable --now udevmon
+```
