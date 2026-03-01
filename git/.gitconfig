@@ -2,6 +2,8 @@
     path = ~/.gitconfig-work
 [includeIf "gitdir:~/dev/github/"]
     path = ~/.gitconfig-personal
+[includeIf "gitdir:~/dev/learning/"]
+    path = ~/.gitconfig-personal
 [commit]
     gpgsign = true
 [alias]
