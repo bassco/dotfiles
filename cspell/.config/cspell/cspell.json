@@ -1,0 +1,22 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "dictionaries": ["base-words", "work-words", "home-words"],
+  "dictionaryDefinitions": [
+    {
+      "name": "base-words",
+      "path": "~/.config/cspell/base-words.txt",
+      "addWords": true
+    },
+    {
+      "name": "work-words",
+      "path": "~/.config/cspell/work-words.txt",
+      "addWords": true
+    },
+    {
+      "name": "home-words",
+      "path": "~/.config/cspell/home-words.txt",
+      "addWords": true
+    }
+  ]
+}

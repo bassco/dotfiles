@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set -euo pipefail
 
 # Usage: ./setup.sh <role> [role...]
@@ -16,7 +16,7 @@ ROLE_FILE="$HOME/.machine-role"
 
 # ── role → stow packages mapping ────────────────────────────────
 declare -A ROLE_PACKAGES=(
-  [base]="zsh bash git nvim tmux starship ripgrep atuin common gpg claude mise lazygit"
+  [base]="zsh bash git nvim tmux starship ripgrep atuin common gpg claude mise lazygit cspell"
   [macos]="ghostty"
   [home]="aerospace hammerspoon archey4 zed"
   [work]="vscode terraform"
@@ -31,13 +31,14 @@ declare -A STOW_TARGET=(
   [atuin]="$HOME/.config/atuin"
   [ghostty]="$HOME/.config/ghostty"
   [hammerspoon]="$HOME/.hammerspoon"
+  [cspell]="$HOME/.config/cspell"
 )
 
 # ── overlay files to symlink for each role ──────────────────────
 # format: "source_relative_to_dotfiles:destination_relative_to_home"
 declare -A ROLE_OVERLAYS=(
-  [work]="zsh/.zshrc-work:.zshrc-local zsh/.zshenv-work:.zshenv-local overlays/mise-config.work.toml:.config/mise/config.local.toml"
-  [home]="zsh/.zshrc-home:.zshrc-local"
+  [work]="zsh/.zshrc-work:.zshrc-local zsh/.zshenv-work:.zshenv-local overlays/mise-config.work.toml:.config/mise/config.local.toml overlays/cspell-work-words.txt:.config/cspell/work-words.txt"
+  [home]="zsh/.zshrc-home:.zshrc-local overlays/cspell-home-words.txt:.config/cspell/home-words.txt"
 )
 
 # ── helpers ──────────────────────────────────────────────────────
