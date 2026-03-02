@@ -68,6 +68,30 @@ stow_package() {
 
   if [[ "$DRY_RUN" == "1" ]]; then
     flags+=("--simulate" "--verbose")
+    echo "  stow $pkg → $target"
+    stow "${flags[@]}" "$pkg"
+    return
+  fi
+
+  # detect conflicts by doing a dry-run first, then backup any real files that block stow
+  local conflicts
+  conflicts=$(stow --simulate --restow --dir="$DOTFILES_DIR" --target="$target" "$pkg" 2>&1 || true)
+  if echo "$conflicts" | grep -q "cannot stow"; then
+    local backup_dir="$HOME/.dotfiles-backup/$(date +%Y%m%dT%H%M%S)/$pkg"
+    mkdir -p "$backup_dir"
+    while IFS= read -r line; do
+      # extract the target path from lines like: * cannot stow ... over existing target <rel-path> since ...
+      local rel_path
+      rel_path=$(echo "$line" | sed -n 's/.*existing target \(.*\) since.*/\1/p')
+      [[ -z "$rel_path" ]] && continue
+      local full_path="$target/$rel_path"
+      if [[ -e "$full_path" && ! -L "$full_path" ]]; then
+        local backup_path="$backup_dir/$rel_path"
+        mkdir -p "$(dirname "$backup_path")"
+        mv "$full_path" "$backup_path"
+        echo "  backup $full_path → $backup_path"
+      fi
+    done <<< "$conflicts"
   fi
 
   echo "  stow $pkg → $target"
