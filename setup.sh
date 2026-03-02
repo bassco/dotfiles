@@ -79,14 +79,14 @@ stow_package() {
   if echo "$conflicts" | grep -q "cannot stow"; then
     local backup_dir="$HOME/.dotfiles-backup/$(date +%Y%m%dT%H%M%S)/$pkg"
     mkdir -p "$backup_dir"
+    local rel_path full_path backup_path
     while IFS= read -r line; do
       # extract the target path from lines like: * cannot stow ... over existing target <rel-path> since ...
-      local rel_path
       rel_path=$(echo "$line" | sed -n 's/.*existing target \(.*\) since.*/\1/p')
       [[ -z "$rel_path" ]] && continue
-      local full_path="$target/$rel_path"
+      full_path="$target/$rel_path"
       if [[ -e "$full_path" && ! -L "$full_path" ]]; then
-        local backup_path="$backup_dir/$rel_path"
+        backup_path="$backup_dir/$rel_path"
         mkdir -p "$(dirname "$backup_path")"
         mv "$full_path" "$backup_path"
         echo "  backup $full_path → $backup_path"
