@@ -1,5 +1,5 @@
 # base Brewfile — cross-platform CLI tools (macOS + Linux)
-tap "homebrew/bundle"
+# Note: versioned runtimes (go, node, python, uv, rust) are managed by mise — not listed here
 tap "joshmedeski/sesh"
 
 # core CLI
@@ -38,12 +38,7 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "zoxide"
 brew "joshmedeski/sesh/sesh"
-brew "uv"
 
-# languages and runtimes
-brew "go"
+# mise bootstraps all versioned runtimes — must be installed via brew first
 brew "mise"
-brew "node"
-brew "python@3.12"
-brew "rustup-init"
 brew "pipx"

@@ -33,16 +33,29 @@ fi
 for role in "$@"; do
 	brewfile="$(brewfile_for_role "$role")"
 	if [[ -z "$brewfile" ]]; then
-		echo "Warning: no Brewfile for role '$role', skipping"
+		echo "  warning: no Brewfile for role '$role', skipping"
 		continue
 	fi
 
 	filepath="$SCRIPT_DIR/$brewfile"
 	if [[ ! -f "$filepath" ]]; then
-		echo "Warning: $filepath not found, skipping"
+		echo "  warning: $filepath not found, skipping"
 		continue
 	fi
 
 	echo "── brew bundle: $brewfile ($role) ──"
-	brew bundle install --file="$filepath"
+
+	# diff installed packages against the bundle — only install what's missing
+	# --no-upgrade skips upgrading already-installed packages (fast on existing machines)
+	missing=$(brew bundle check --file="$filepath" --verbose 2>&1 | grep "^→" || true)
+
+	if [[ -z "$missing" ]]; then
+		echo "  all packages already installed, skipping"
+		continue
+	fi
+
+	echo "  installing missing packages:"
+	echo "$missing" | sed 's/^→ /    + /' | sed 's/ needs to be.*//'
+
+	brew bundle install --file="$filepath" --no-upgrade
 done
