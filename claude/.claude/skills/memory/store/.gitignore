@@ -1,0 +1,4 @@
+# Work-specific memory — not portable across machines
+projects/
+context/jira-connection.md
+preferences/jira-ticket-descriptions.md
