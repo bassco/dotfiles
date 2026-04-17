@@ -11,14 +11,4 @@ return {
       })
     end,
   },
-  {
-    "mfussenegger/nvim-lint",
-    opts = {
-      linters = {
-        markdownlint = {
-          args = { "--config", "~/.markdownlint.jsonc", "--" },
-        },
-      },
-    },
-  },
 }
