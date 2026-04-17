@@ -9,7 +9,7 @@ return {
         list = { selection = { preselect = false, auto_insert = false } },
       },
       keymap = {
-        preset = "enter",
+        preset = "super-tab",
       },
     },
   },
