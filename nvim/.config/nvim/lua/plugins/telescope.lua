@@ -1,21 +1,20 @@
--- since this is just an example spec, don't actually load anything here and return an empty spec
 return {
-  -- add telescope-fzf-native
-  {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-  },
-  -- change some telescope options and a keymap to browse plugin files
+  -- disable LazyVim's default picker (fzf-lua) in favour of telescope
+  { "ibhagwan/fzf-lua", enabled = false },
+
+  -- use telescope as the picker and load the native fzf sorter
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        config = function()
+          require("telescope").load_extension("fzf")
+        end,
+      },
+    },
     keys = {
-      -- add a keymap to browse plugin files
       -- stylua: ignore
       {
         "<leader>fp",
@@ -23,7 +22,6 @@ return {
         desc = "Find Plugin File",
       },
     },
-    -- change some options
     opts = {
       defaults = {
         layout_strategy = "horizontal",
