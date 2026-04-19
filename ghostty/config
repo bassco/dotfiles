@@ -10,3 +10,6 @@ macos-option-as-alt = true
 
 # copy selection to cmd+V buffer
 copy-on-select = clipboard
+
+# paste from clipboard with cmd+v
+keybind = super+v=paste_from_clipboard

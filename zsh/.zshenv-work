@@ -6,3 +6,8 @@ export GIT_USER=${GIT_USERNAME}
 
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 export TF_IN_AUTOMATION=true
+
+export BEADS_DIR="${HOME}/work/.beads"
+
+path=("$HOME/.local/bin" $path)
+export PATH

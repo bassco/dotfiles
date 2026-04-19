@@ -1,11 +1,15 @@
-[includeIf "gitdir:~/dev/gitlab/"]
+[includeIf "gitdir:~/work/"]
     path = ~/.gitconfig-work
 [includeIf "gitdir:~/dev/github/"]
     path = ~/.gitconfig-personal
 [includeIf "gitdir:~/dev/learning/"]
     path = ~/.gitconfig-personal
+[includeIf "gitdir:~/.config/"]
+    path = ~/.gitconfig-personal
 [includeIf "gitdir:~/.dotfiles/"]
     path = ~/.gitconfig-personal
+[includeIf "gitdir:~/.makersite/"]
+    path = ~/.gitconfig-work
 [commit]
     gpgsign = true
 [alias]
@@ -32,3 +36,5 @@
     defaultBranch = main
 [rerere]
     enabled = true
+[beads]
+	role = owner

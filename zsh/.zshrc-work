@@ -1,6 +1,9 @@
 # work-specific zsh config overlay
 # symlink or copy to ~/.zshrc-local
 
+# ansible too many open files mitigation
+ulimit -n 65536
+
 # yubikey manager completions
 source <(_YKMAN_COMPLETE=zsh_source ykman)
 
@@ -8,3 +11,6 @@ source <(_YKMAN_COMPLETE=zsh_source ykman)
 source <(fzf --zsh)
 # override with custom fzf config if present
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export JIRA_URL=https://everycs.atlassian.net
+export CONFLUENCE_URL="${JIRA_URL}/wiki"

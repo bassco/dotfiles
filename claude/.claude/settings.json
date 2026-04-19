@@ -1,46 +1,93 @@
 {
-  "activeOutputStyle": "Claude MPM",
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
-  "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": true
-  },
-  "hooks": {
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "command": "bd prime",
-            "type": "command"
-          }
+    "activeOutputStyle": "Claude MPM",
+    "attribution": {
+        "commit": "",
+        "pr": ""
+    },
+    "enabledPlugins": {
+        "clangd-lsp@claude-plugins-official": true
+    },
+    "hooks": {
+        "PreCompact": [
+            {
+                "hooks": [
+                    {
+                        "command": "bd prime",
+                        "type": "command"
+                    }
+                ],
+                "matcher": ""
+            }
         ],
-        "matcher": ""
-      }
-    ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "command": "bd prime",
-            "type": "command"
-          }
+        "SessionStart": [
+            {
+                "hooks": [
+                    {
+                        "command": "bd prime",
+                        "type": "command"
+                    }
+                ],
+                "matcher": ""
+            },
+            {
+                "matcher": "startup",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-session-reminder"
+                    }
+                ]
+            },
+            {
+                "matcher": "resume",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-session-reminder"
+                    }
+                ]
+            },
+            {
+                "matcher": "clear",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-session-reminder"
+                    }
+                ]
+            },
+            {
+                "matcher": "compact",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-session-reminder"
+                    }
+                ]
+            }
         ],
-        "matcher": ""
-      }
-    ]
-  },
-  "mcpServers": {
-    "beads": {
-      "args": [],
-      "command": "beads-mcp"
+        "PreToolUse": [
+            {
+                "matcher": "Grep|Glob|Read|Search",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-code-discovery-gate"
+                    }
+                ]
+            }
+        ]
+    },
+    "mcpServers": {
+        "beads": {
+            "args": [],
+            "command": "beads-mcp"
+        }
+    },
+    "model": "opus",
+    "skipDangerousModePermissionPrompt": true,
+    "statusLine": {
+        "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); time=$(date +%H:%M); user=$(whoami); host=$(hostname -s); rel_dir=$(echo \"$current_dir\" | sed \"s|^$HOME|~|\"); if [ ${#rel_dir} -gt 30 ]; then rel_dir=\"\u2026/$(basename \"$rel_dir\")\"; fi; git_info=\"\"; if git rev-parse --git-dir >/dev/null 2>&1; then branch=$(git branch --show-current 2>/dev/null || echo 'detached'); status=$(git status --porcelain 2>/dev/null); if [ -n \"$status\" ]; then git_info=\" \uD83C\uDF31$branch*\"; else git_info=\" \uD83C\uDF31$branch\"; fi; fi; printf \"[%s] %s@%s %s%s\" \"$time\" \"$user\" \"$host\" \"$rel_dir\" \"$git_info\"",
+        "type": "command"
     }
-  },
-  "model": "opus",
-  "skipDangerousModePermissionPrompt": true,
-  "statusLine": {
-    "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); time=$(date +%H:%M); user=$(whoami); host=$(hostname -s); rel_dir=$(echo \"$current_dir\" | sed \"s|^$HOME|~|\"); if [ ${#rel_dir} -gt 30 ]; then rel_dir=\"…/$(basename \"$rel_dir\")\"; fi; git_info=\"\"; if git rev-parse --git-dir \u003e/dev/null 2\u003e\u00261; then branch=$(git branch --show-current 2\u003e/dev/null || echo 'detached'); status=$(git status --porcelain 2\u003e/dev/null); if [ -n \"$status\" ]; then git_info=\" 🌱$branch*\"; else git_info=\" 🌱$branch\"; fi; fi; printf \"[%s] %s@%s %s%s\" \"$time\" \"$user\" \"$host\" \"$rel_dir\" \"$git_info\"",
-    "type": "command"
-  }
 }

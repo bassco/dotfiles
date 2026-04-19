@@ -1,0 +1,178 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "orion": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "makersite orion (local)",
+      "options": {
+        "baseURL": "http://rigel.orion.makersite.org/v1",
+        "apiKey": "env:AIGW_API_KEY",
+      },
+      "models": {
+        "azure_ai/claude-sonnet-4-6": {
+          "name": "Claude Sonnet 4.6 (local)",
+          "limit": {
+            "context": 1000000,
+            "output": 131072,
+          },
+        },
+        "azure_ai/claude-opus-4-6": {
+          "name": "Claude Opus 4.6 (local)",
+          "limit": {
+            "context": 1000000,
+            "output": 131072,
+          },
+        },
+      },
+    },
+  },
+  "plugin": [
+    "@tarquinen/opencode-dcp@latest",
+    [
+      "opencode-mempalace",
+      {
+        "disableAutoUpdate": true,
+        "mcpCommand": [
+          "/Users/bashco/.local/share/uv/tools/mempalace/bin/python3",
+          "-m",
+          "mempalace.mcp_server",
+        ],
+      },
+    ],
+  ],
+  "model": "claude-opus-4-6",
+  "small_model": "claude-sonnet-4-6",
+  "enabled_providers": ["orion", "rigel"],
+  "permission": {
+    "external_directory": {
+      "~/.local/share/opencode/**": "allow",
+      "~/.local/share/uv/tools/**": "allow",
+      "~/.local/bin/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~/.cache/opencode/**": "allow",
+      "~/.claude/**": "allow",
+      "~/.mempalace/**": "allow",
+      "$HOME/work/**": "allow",
+      "/tmp/**": "allow",
+      "~/tmp/**": "allow",
+    },
+    "read": {
+      "~/.local/share/opencode/**": "allow",
+      "~/.local/share/uv/tools/**": "allow",
+      "~/.local/bin/**": "allow",
+      "$HOME/work/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~/.cache/opencode/**": "allow",
+      "~/.claude/**": "allow",
+      "~/.mempalace/**": "allow",
+      "/tmp/**": "allow",
+      "~/tmp/**": "allow",
+    },
+    "edit": {
+      "~/.local/bin/**": "allow",
+      "~/.local/share/uv/tools/**": "allow",
+      "$HOME/work/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~/.cache/opencode/**": "allow",
+      "~/.claude/**": "allow",
+      "~/.mempalace/**": "allow",
+      "/tmp/**": "allow",
+      "~/tmp/**": "allow",
+    },
+    "find": {
+      "$HOME/work/**": "allow",
+      "~/.local/share/opencode/tool-output/**": "allow",
+      "~/.local/share/uv/tools/**": "allow",
+      "~/.local/bin/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~/.cache/opencode/**": "allow",
+      "~/.claude/**": "allow",
+      "~/.mempalace/**": "allow",
+      "/tmp/**": "allow",
+      "~/tmp/**": "allow",
+    },
+    "glob": {
+      "$HOME/work/**": "allow",
+      "~/.local/share/opencode/tool-output/**": "allow",
+      "~/.local/share/uv/tools/**": "allow",
+      "~/.local/bin/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~/.cache/opencode/**": "allow",
+      "~/.claude/**": "allow",
+      "~/.mempalace/**": "allow",
+      "/tmp/**": "allow",
+      "~/tmp/**": "allow",
+    },
+    "write": {
+      "~/.local/share/opencode/**": "allow",
+      "~/.local/share/uv/tools/**": "allow",
+      "~/.local/bin/**": "allow",
+      "$HOME/github/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~/.cache/opencode/**": "allow",
+      "~/.claude/**": "allow",
+      "~/.mempalace/**": "allow",
+      "/tmp/**": "allow",
+      "~/tmp/**": "allow",
+    },
+    "bash": {
+      "uvx *": "allow",
+      "bd *": "allow",
+      "git *": "allow",
+      "cat *": "allow",
+      "curl *": "allow",
+      "grep *": "allow",
+      "sort *": "allow",
+      "tail *": "allow",
+      "find *": "allow",
+      "head *": "allow",
+      "sed *": "allow",
+      "uniq *": "allow",
+      "ls *": "allow",
+      "awk *": "allow",
+      "jira *": "allow",
+      "gh *": "allow",
+      "dig *": "allow",
+    },
+    "webfetch": "allow",
+  },
+  // === Instructions ===
+  // Load CLAUDE.md globally so coding discipline and startup protocol are always present
+  "instructions": ["~/.claude/CLAUDE.md"],
+
+  // === Compaction ===
+  "compaction": {
+    "auto": false,
+    "prune": false,
+    "reserved": 10000,
+  },
+
+  // === Snapshots ===
+  "snapshot": false,
+
+  // === Sharing ===
+  "share": "manual",
+
+  // === Autoupdate ===
+  "autoupdate": "notify",
+  "mcp": {
+    "mcp-atlassian": {
+      "type": "local",
+      "enabled": false,
+      "command": ["uvx", "mcp-atlassian"],
+      "environment": {
+        "CONFLUENCE_URL": "{env:CONFLUENCE_URL}",
+        "CONFLUENCE_USERNAME": "{env:ATLASSIAN_EMAIL}",
+        "CONFLUENCE_API_TOKEN": "{env:ATLASSIAN_API_TOKEN}",
+        "JIRA_URL": "{env:JIRA_URL}",
+        "JIRA_USERNAME": "{env:ATLASSIAN_EMAIL}",
+        "JIRA_API_TOKEN": "{env:ATLASSIAN_API_TOKEN}",
+      },
+    },
+    "codebase-memory-mcp": {
+      "enabled": true,
+      "type": "local",
+      "command": ["${HOME}/.local/bin/codebase-memory-mcp"],
+    },
+  },
+}
