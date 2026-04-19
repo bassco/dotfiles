@@ -88,5 +88,6 @@
   "workbench.iconTheme": "vscode-icons",
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
-  }
+  },
+  "chat.disableAIFeatures": true
 }
